@@ -1,9 +1,20 @@
 package com.example.taskmanager.task.dto;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 
 public class TaskDTO{
+	
+	@NotBlank(message="Title is required")
+	@Size(min = 3, max = 100, message = "Title must be between 3 and 100 characters")
 	private String title;
+	
+	@Size(max = 250, message = "Description cannot exceed 250 characters")
 	private String description;
+	
+	@NotBlank(message="Status is required")
+	@Pattern(regexp = "PENDING|IN_PROGRESS|COMPLETED", message = "Status must be PENDING, IN_PROGRESS, or COMPLETED")
 	private String status;
 	
 	public void setTitle(String title) {
